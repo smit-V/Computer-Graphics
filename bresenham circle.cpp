@@ -1,5 +1,6 @@
+// 1
 // C-program for circle drawing
-// using Bresenham’s Algorithm
+// using Bresenhamâ€™s Algorithm
 // in computer-graphics
 #include <stdio.h>
 #include <dos.h>
@@ -59,3 +60,67 @@ int main()
 	return 0;
 }
 
+
+
+// 2
+#include<iostream>
+#include<graphics.h>
+using namespace std;
+class bresh
+{
+	public:
+		int xc,yc,x,y,r,d;
+		void input()
+		{
+			cout<<"Enter the coordinates :";
+			cin>>xc>>yc;
+			cout<<"Enter the Radius:";
+			cin>>r;
+		}
+		void drawcircle()
+		{
+			putpixel(xc+x,yc+y,5);
+			putpixel(xc-x,yc+y,5);
+			putpixel(xc-x,yc-y,5);
+			putpixel(xc+x,yc-y,5);
+			putpixel(xc+y,yc+x,5);
+			putpixel(xc+y,yc-x,5);
+			putpixel(xc-y,yc-x,5);
+			putpixel(xc-y,yc+x,5);
+		}
+		void breshcircle()
+		{
+			x=0;
+			y=r;
+			d=3-2*r;
+			drawcircle();
+			
+			while(y>=x)
+			{
+				x++;
+				if(d>0)
+				{
+					y--;
+					d=d+4*(x-y)+10;
+				}
+				else
+				{
+					d=d+4*x+6;
+				}
+				 drawcircle();
+				 delay(10);
+			}
+			
+		}
+};
+
+int main()
+{
+
+	bresh obj;
+	obj.input();
+	initwindow(1000,1000);
+	obj.breshcircle();
+	getch();
+	return 0;
+}
